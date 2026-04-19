@@ -1,0 +1,29 @@
+&CONTROL
+  calculation   = 'scf'
+  prefix        = 'Ge_super'
+  outdir        = './tmp/'
+  pseudo_dir    = '../../pseudo'
+  tprnfor       = .true.       ! required for phonopy force collection
+/
+
+&SYSTEM
+  ibrav         = 0                   ! FCC Bravais lattice (primitive cell)
+  nat           = 250
+  ntyp          = 1
+  ecutwfc       = 80.0         ! kinetic energy cutoff (Ry)
+  ecutrho       = 320.0        ! charge density cutoff (Ry)
+  occupations   = 'smearing'   ! required: PBE gives near-metallic Ge
+  degauss       = 0.001        ! smearing width (Ry), as in the paper
+/
+
+&ELECTRONS
+  conv_thr         = 1.0d-10    ! tight threshold needed for hybrid functionals
+  mixing_beta      = 0.7
+  electron_maxstep = 200
+/
+ATOMIC_SPECIES
+  Ge  72.630  Ge.pbe-dn-kjpaw_psl.1.0.0.UPF
+
+K_POINTS {automatic}
+  2  2  2  0  0  0
+
